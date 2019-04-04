@@ -75,13 +75,6 @@ ELSE(AUTOVECTORIZE)
 ENDIF(AUTOVECTORIZE)
 
 
-# Download and unpack googletest at configure time
-configure_file(3rdparty/GTest.CMakeLists.txt googletest-download/CMakeLists.txt)
-execute_process(COMMAND "${CMAKE_COMMAND}" -G "${CMAKE_GENERATOR}" .
-    WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/googletest-download" )
-execute_process(COMMAND "${CMAKE_COMMAND}" --build .
-    WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/googletest-download" )
-
 # Prevent GoogleTest from overriding our compiler/linker options
 # when building with Visual Studio
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
@@ -89,8 +82,7 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 # Add googletest directly to our build. This adds
 # the following targets: gtest, gtest_main, gmock
 # and gmock_main
-add_subdirectory("${CMAKE_BINARY_DIR}/googletest-src"
-                 "${CMAKE_BINARY_DIR}/googletest-build")
+add_subdirectory("3rdparty/googletest")
 
 # The gtest/gmock targets carry header search path
 # dependencies automatically when using CMake 2.8.11 or
@@ -117,8 +109,10 @@ ELSE(DATADIR)
 ENDIF(DATADIR)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/3rdparty/")
-set(TBB_ROOT_DIR "${CMAKE_SOURCE_DIR}/3rdparty/tbb2019_20190320oss")
-find_package(TBB)
+set(TBB_ROOT ${TBB_ROOT} "${CMAKE_MODULE_PATH}/tbb")
+include(${TBB_ROOT}/cmake/TBBBuild.cmake)
+tbb_build(TBB_ROOT ${TBB_ROOT} CONFIG_DIR TBB_DIR MAKE_ARGS)
+find_package(TBB REQUIRED tbb)
 include_directories(${TBB_INCLUDE_DIRS})
 
 

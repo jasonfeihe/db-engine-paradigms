@@ -38,3 +38,9 @@ plot/*.tex
 *.exe
 *.out
 *.app
+
+# Tags
+GPATH
+GRTAGS
+GSYMS
+GTAGS

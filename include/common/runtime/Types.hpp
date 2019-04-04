@@ -135,7 +135,8 @@ template <unsigned maxLen> class Varchar {
    }
    /// Cast
    static Varchar<maxLen> castString(const char* str, uint32_t strLen) {
-      assert(strLen <= maxLen);
+      // assert(strLen <= maxLen);
+      strLen = std::min(strLen, maxLen);
       Varchar<maxLen> result;
       result.len = strLen;
       memcpy(result.value, str, strLen);
@@ -267,7 +268,8 @@ template <unsigned maxLen> class Char {
          str++;
          strLen--;
       }
-      assert(strLen <= maxLen);
+      // assert(strLen <= maxLen);
+      strLen = std::min(strLen, maxLen);
       Char<maxLen> result;
       result.len = strLen;
       memcpy(result.value, str, strLen);

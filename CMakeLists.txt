@@ -117,6 +117,7 @@ ELSE(DATADIR)
 ENDIF(DATADIR)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/3rdparty/")
+set(TBB_ROOT_DIR "${CMAKE_SOURCE_DIR}/3rdparty/tbb2019_20190320oss")
 find_package(TBB)
 include_directories(${TBB_INCLUDE_DIRS})
 

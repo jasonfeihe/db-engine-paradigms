@@ -34,10 +34,10 @@ void clearOsCaches() {
 int main(int argc, char* argv[]) {
    if (argc <= 2) {
       std::cerr
-          << "Usage: ./" << argv[0]
+          << "Usage: " << argv[0] << " "
           << "<number of repetitions> <path to sbb dir> [nrThreads = all] \n "
              " EnvVars: [vectorSize = 1024] [SIMDhash = 0] [SIMDjoin = 0] "
-             "[SIMDsel = 0]";
+             "[SIMDsel = 0]\n";
       exit(1);
    }
 

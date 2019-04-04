@@ -1,0 +1,39 @@
+db_defs = [
+  "_LIBCPP_VERSION=1",
+  "HASH_SIZE=64",
+  "DATADIR=data",
+]
+
+incs = [
+  "include",
+]
+
+flags = [
+  "-march=native",
+  "-mtune=native",
+  "-std=c++14",
+  "-Wno-psabi",
+  "-Wno-unknown-pragmas",
+  "-fno-omit-frame-pointer",
+  "-fsanitize=address",
+  "-static-libasan",
+]
+
+cc_library(
+  name = "common",
+  srcs = [
+    "src/common/algebra/Operators.cpp",
+    "src/common/algebra/Types.cpp",
+    "src/common/runtime/Database.cpp",
+    "src/common/runtime/MemoryPool.cpp",
+    "src/common/runtime/Types.cpp",
+    "src/common/runtime/String.cpp",
+    "src/common/runtime/Import.cpp",
+    "src/common/runtime/Hashmap.cpp",
+    "src/common/runtime/Concurrency.cpp",
+    "src/common/runtime/Profile.cpp",
+  ],
+  defs = db_defs,
+  incs = incs,
+  extra_cppflags = flags,
+)

@@ -109,9 +109,9 @@ ELSE(DATADIR)
 ENDIF(DATADIR)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/3rdparty/")
-set(TBB_ROOT ${TBB_ROOT} "${CMAKE_MODULE_PATH}/tbb")
-include(${TBB_ROOT}/cmake/TBBBuild.cmake)
-tbb_build(TBB_ROOT ${TBB_ROOT} CONFIG_DIR TBB_DIR MAKE_ARGS)
+# set(TBB_ROOT ${TBB_ROOT} "${CMAKE_MODULE_PATH}/tbb")
+# include(${TBB_ROOT}/cmake/TBBBuild.cmake)
+# tbb_build(TBB_ROOT ${TBB_ROOT} CONFIG_DIR TBB_DIR MAKE_ARGS)
 find_package(TBB REQUIRED tbb)
 include_directories(${TBB_INCLUDE_DIRS})
 
